@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Turkey Embed Demo</title>
+  <style>
+    turkey-embed iframe {
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Use it like this -->
+  <turkey-embed src="https://example.com" width="600" height="400"></turkey-embed>
+
+  <script>
+    class TurkeyEmbed extends HTMLElement {
+      connectedCallback() {
+        const src = this.getAttribute("src") || "";
+        const width = this.getAttribute("width") || "800";
+        const height = this.getAttribute("height") || "600";
+
+        const iframe = document.createElement("iframe");
+        iframe.src = src;
+        iframe.width = width;
+        iframe.height = height;
+
+        this.appendChild(iframe);
+      }
+    }
+
+    customElements.define("turkey-embed", TurkeyEmbed);
+  </script>
+</body>
+</html>
